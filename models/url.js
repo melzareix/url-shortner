@@ -6,7 +6,8 @@ autoIncrement.initialize(conn);
 
 var urlSchema = mongoose.Schema({
     original : String,
-    shortendId : Number
+    shortendId : Number,
+    hitCount : Number
 });
 
 urlSchema.plugin(autoIncrement.plugin, {
