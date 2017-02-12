@@ -1,52 +1,57 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const Url = require('../models/url');
-
-mongoose.connect('mongodb://localhost:27017/url-shortner');
-
 
 router.get('/shorten/:weburl*', function (req, res, next) {
     const orignalUrl = req.params['weburl'] + req.params[0];
+    var shortenedUrl;
     if (validateUrl(orignalUrl)) {
-
         Url.findOne({
             original: orignalUrl
         }, function (err, url) {
-            console.log(url);
             if (err) {
                 return next(err);
             }
             if (url) { // url exists already
-                res.json({
+                shortenedUrl = req.get('host') + '/' + url.shortendId;
+                return res.json({
+                    status: 'OK',
                     original_url: orignalUrl,
-                    shortened_url: req.get('host') + '/' + url.shortendId
+                    shortened_url: shortenedUrl
                 });
-            } else {
+            } else { // create new url record
                 new Url({
-                    original : orignalUrl
+                    original: orignalUrl
                 }).save(function (err, url) {
                     if (err) {
-                        return next(err);
+                        next(err);
                     }
+                    shortenedUrl = req.get('host') + '/' + url.shortendId;
                     return res.json({
+                        status: 'OK',
                         original_url: orignalUrl,
-                        shortened_url: req.get('host') + '/' + url.shortendId
+                        shortened_url: shortenedUrl
                     });
-                })
+                });
             }
         });
-    }else{
+
+    } else {
         res.json({
-            status : 'Invalid URL'
+            status: 'Invalid URL.'
         });
     }
-   
+
 });
 
-router.use(function(err, req, res, next){
-    console.log(err);
-    res.send('Oops');
+/*
+    Error handling middleware
+*/
+
+router.use(function (err, req, res, next) {
+    res.json({
+        status: 'Failed to connect to database.'
+    });
 });
 /*
     Regex for URL validation
