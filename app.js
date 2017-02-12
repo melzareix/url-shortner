@@ -8,7 +8,8 @@ const port = process.env.PORT || 3000;
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('api/v1', apiv1);
+
+app.use('/api/v1', apiv1);
 
 app.use(function (req, res) {
     res.json({

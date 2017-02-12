@@ -1,0 +1,26 @@
+{
+  "name": "url-shortner-service",
+  "version": "1.0.0",
+  "description": "``` User stories: 1) User Story: I can pass a URL as a parameter and I will receive a shortened URL in the JSON response. 2) User Story: If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead. 3) User Story: When I visit that shortened URL, it will redirect me to my original link. ```",
+  "main": "app.js",
+  "scripts": {
+    "start": "node start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melzareix/url-shortner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melzareix/url-shortner/issues"
+  },
+  "homepage": "https://github.com/melzareix/url-shortner#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.8.1"
+  }
+}
