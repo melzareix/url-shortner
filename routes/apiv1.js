@@ -38,7 +38,7 @@ router.get('/shorten/:weburl*', function (req, res, next) {
 
     } else {
         res.json({
-            status: 'Invalid URL.'
+            status: 'The URL provided is invalid.'
         });
     }
 
