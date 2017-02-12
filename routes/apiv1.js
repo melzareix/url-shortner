@@ -22,7 +22,8 @@ router.get('/shorten/:weburl*', function (req, res, next) {
                 });
             } else { // create new url record
                 new Url({
-                    original: orignalUrl
+                    original: orignalUrl,
+                    hitCount: 0
                 }).save(function (err, url) {
                     if (err) {
                         next(err);
@@ -51,7 +52,7 @@ router.get('/shorten/:weburl*', function (req, res, next) {
 
 router.use(function (err, req, res, next) {
 
-    res.status(500).res.json({
+    res.status(500).json({
         status: 'Internal Server Error.'
     });
 });
