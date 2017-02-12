@@ -6,6 +6,25 @@ User stories:
 3) User Story: When I visit that shortened URL, it will redirect me to my original link.
 ```
 
+
+### Example usage:
+
+```
+https://url-shortnerz.herokuapp.com/api/v1/shorten/https://google.com
+https://url-shortnerz.herokuapp.com/api/v1/shorten/http://codeforces.com/
+https://url-shortnerz.herokuapp.com/api/v1/shorten/http://codeforces.com:80/
+```
+
+### Example output:
+
+```
+{
+  "status": "OK",
+  "original_url": "https://google.com",
+  "shortened_url": "https://url-shortnerz.herokuapp.com/1000"
+}
+```
+
 # How to install
  - Install NodeJS and NPM
  
